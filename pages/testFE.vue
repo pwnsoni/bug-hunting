@@ -1,9 +1,15 @@
 <template>
-  <Tutorial/>
+  <div>
+    <Header />
+    <Projects />
+    <Footer />
+  </div>
 </template>
 
 <script>
+import Projects from '../components/Projects.vue';
 export default {
-  name: 'IndexPage'
+    name: "IndexPage",
+    components: { Projects }
 }
 </script>
