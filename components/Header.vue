@@ -39,25 +39,25 @@
 
 <script>
 export default {
-//   computed: {
-//     isActiveSession () {
-//         return this.$store.state.isActiveSession;
-//     },
-//     activeUser() {
-//         return this.$store.state.activeUser;
-//     }
-//   },
-//   methods: {
-//     signIn () {
-//         alert("Clicked Sign in")
-//         let data = {"userName": "pwnsoni"};
-//         this.$store.dispatch('INITIATE_SESSION', data)
-//     },
+  computed: {
+    isActiveSession () {
+        return this.$store.state.isActiveSession;
+    },
+    activeUser() {
+        return this.$store.state.activeUser;
+    }
+  },
+  methods: {
+    signIn () {
+        let data = {"userName": "pwnsoni"};
+        this.$store.dispatch('INITIATE_SESSION', data)
+        this.$router.push('/')
+    },
 
-//     signOut () {
-//         confirm('Clicked Sign Out')
-//         this.$store.dispatch('RESET_SESSION')
-//     }
-//   }
+    signOut () {
+        confirm('Clicked Sign Out')
+        this.$store.dispatch('RESET_SESSION')
+    }
+  }
 }
 </script>

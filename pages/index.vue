@@ -1,9 +1,12 @@
 <template>
-  <Tutorial/>
+    <div>
+        <Header />
+        <HeadingContent content = "Welcome to your hunt!" />
+    </div>
 </template>
 
 <script>
-export default {
-  name: 'IndexPage'
-}
+  export default {
+    middleware: 'auth'
+  }
 </script>
