@@ -5,7 +5,7 @@ const port = process.env.SERVER_PORT;
 const url = process.env.DB_CONNECTION_URL;
 
 app.get('/', (req, res) => {
-  res.send(`Hello World! ${url}`);
+  res.send({statusCode: 200, message: url});
 })
 
 app.listen(port, () => {

@@ -1,16 +1,14 @@
 <template>
   <div>
     <Header />
+    <HeadingContent content = "Pick your prey for hunt!" />
     <IssuesNew />
     <Footer />
   </div>
 </template>
 
 <script>
-import IssuesNew from '../components/IssuesNew.vue';
-import ProjectNew from '../components/ProjectNew.vue';
 export default {
     name: "IndexPage",
-    components: { IssuesNew, ProjectNew }
 }
 </script>

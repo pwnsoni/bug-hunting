@@ -1,15 +1,16 @@
 <template>
 
     <div id="mainDiv">
-        <div id="cardContainer">
-            <div id="card" v-for="proj in projects" :key="proj" @click="onClickProject(proj.title)">
-                <p id="title">{{proj.title}}</p>
-                <p id="description"> {{proj.description}} </p>
+        <div id="cardContainer1">
+            <div id="card-vertical">
+                <p id="title">Create an issue!</p>
+                <p id="description"> Click me to track a new issue! </p>
             </div>
-            <div id="card">
-                <p id="title">Initiate a new project!</p>
-                <p id="description"> Click me to create a new project! </p>
+            <div id="card-vertical" v-for="issue in issues" :key="issue" @click="onClickIssue(issue.id)">
+                <p id="title">{{issue.id}}</p>
+                <p id="description"> {{issue.summary}} </p>
             </div>
+            
         </div>
     </div>
 
@@ -20,33 +21,36 @@
 
 export default {
     computed: {
-        projects() {
-            return this.$store.state.projects;
+        issues() {
+            return this.$store.state.issues;
         }
     },
     methods: {
-        onClickProject(title) {
-            this.$router.push(`/projects/${title}`);
+        onClickIssue(id) {
+            this.$router.push(`/issues/${id}`);
         }
     }
 }
 </script>
 
 
-<style>
-#cardContainer{
+<style scoped>
+
+#mainDiv{
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cardContainer1{
     padding: 5%;
-    flex-wrap: wrap;
-    margin-left: 10%;
-    margin-right: 10%;
     padding-top: 1%;
 }
 
-#card{
+#card-vertical{
     display: flex;
-    height: 300px;
-    width: 280px;
+    height: 100px;
+    width: 500px;
     background-color: #17141d;
     border-radius: 10px;
     box-shadow: -1rem 0 3rem #000;
@@ -58,17 +62,17 @@ export default {
     padding: 3%;
 }
 
-#card:not(:first-child) {
+#card-vertical:not() {
     margin-left: -20px;
 }
 
-#card:hover {
+#card-vertical:hover {
   transform: translateY(-20px);
   transition: 0.4s ease-out;
   background-color: #332c41;
 }
 
-#card:hover ~ .card {
+#card-vertical:hover ~ .card {
   position: relative;
   left: 50px;
   transition: 0.4s ease-out;
