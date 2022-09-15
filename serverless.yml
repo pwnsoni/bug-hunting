@@ -1,14 +1,18 @@
-service: ci-cd-sample
- 
+service: bug-hunting # NOTE: update this with your service name
+
 provider:
   name: aws
   runtime: nodejs16.x
   stage: dev
   region: us-east-1
- 
+
 functions:
-  app:
-    handler: handler.handler
+  nuxt:
+    handler: handler.render
     events:
-      - http: ANY /
-      - http: 'ANY {proxy+}'
+      - http: 
+          path: /
+          method: ANY
+      - http: 
+          path: /{proxy+}
+          method: ANY
