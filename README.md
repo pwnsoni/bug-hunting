@@ -1,5 +1,25 @@
 # bug-hunting
 
+### A web app to track bugs/incidents with different user groups and different access.
+
+## Seamless deployment with the help of code build and code pipeline
+
+## Technology Stack
+
+* Nuxt JS
+
+* Express JS
+
+* MongoDB
+
+* Serverless (For deployment)
+
+* AWS Lambda
+
+* Code Build
+
+* Code Pipeline
+
 ## Build Setup
 
 ```bash
