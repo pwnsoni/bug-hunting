@@ -1,15 +1,25 @@
 require('dotenv').config();
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
-const port = process.env.SERVER_PORT;
-const url = process.env.DB_CONNECTION_URL;
 
-app.get('/api/test', (req, res) => {
-  res.send({statusCode: 200, message: url});
+const {dbUtil} = require('./db');
+const router = express.Router();
+const routes = require('./routes/index.js');
+
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
+
+app.use('/api', routes(router));
+
+
+app.get('/api/test', async (req, res) => {
+  await dbUtil.connect()
+  res.send({statusCode: 200});
 })
 
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}`)
-// })
 
 module.exports = {app, express}

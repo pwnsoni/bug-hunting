@@ -1,12 +1,16 @@
 <template>
     <div>
     <b-navbar toggleable="lg" type="light" variant="light">
-        <b-navbar-brand href="/"> Bug </b-navbar-brand>
+        <b-navbar-brand to="/" id="bordered"> Bug (Under Development) </b-navbar-brand>
+        
+        <b-navbar-brand > | </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
-
+            
+            <nuxt-link to="/projects"  class="mr-sm-3"><b-button > Projects </b-button> </nuxt-link>
+            <nuxt-link to="/issues"  class="mr-sm-3"><b-button > Issues </b-button> </nuxt-link>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
             <b-nav-form>
@@ -48,6 +52,10 @@ export default {
     }
   },
   methods: {
+    click(path){
+        this.$router.push(path)
+    },
+
     signIn () {
         let data = {"userName": "pwnsoni"};
         this.$store.dispatch('INITIATE_SESSION', data)
