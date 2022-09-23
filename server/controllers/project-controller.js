@@ -13,8 +13,9 @@ const getAllProjects = async (req, res) => {
         result.status = status;
         result.result = projects;
     } catch (error) {
+        console.log(error)
         result.status = 500;
-        result.error = e;
+        result.error = error;
     }
 
     res.status(status).send(result);
@@ -32,8 +33,9 @@ const getThisProject = async (req, res) => {
         result.status = status;
         result.result = project;
     } catch (error) {
+        console.log(error)
         result.status = 500;
-        result.error = e;
+        result.error = error;
     }
 
     res.status(status).send(result);
