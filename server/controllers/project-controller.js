@@ -50,8 +50,8 @@ const createProject = async (req, res) => {
     let result = {status: 200}
     try {
         await dbUtil.connect();
-        await project.save();
-        result.result = temp;
+        let dbRes = await project.save();
+        result.result = dbRes;
     } catch (error) {
         result.status = 500;
         result.error = error;

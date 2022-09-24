@@ -2,10 +2,16 @@
 
     <div id="mainDiv">
         <div id="cardContainer1">
-            <div id="card-vertical">
+            <div v-b-modal.modal-prevent-closing-createIssue id="card-vertical">
                 <p id="title">Create an issue!</p>
                 <p id="description"> Click me to track a new issue! </p>
             </div>
+            <b-modal id="modal-prevent-closing-createIssue" size="xl">
+                <CreateIssue />
+                <template #modal-footer>
+                    <span id="footerNotes"> Click outside the borders to close </span>
+                </template>
+            </b-modal>  
             <div id="card-vertical" v-for="issue in issues" :key="issue" @click="onClickIssue(issue.id)">
                 <p id="title">{{issue.id}}</p>
                 <p id="description"> {{issue.summary}} </p>
@@ -96,5 +102,8 @@ export default {
   top: 50%;
   padding-left: 5%;
 }
+#footerNotes{
+    color: rgb(236, 112, 112);
+ }
 </style>
 

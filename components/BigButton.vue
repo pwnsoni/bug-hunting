@@ -18,10 +18,10 @@ export default {
     #button{
         width: 20%;
         padding: 1.5%;
-        background: rgb(40, 41, 41);
+        background: #17141d;
         margin: 5%;
         transition: 0.3s;
-        color: white;
+        color: #dad4e6;
         display: inline-block;
         font-size: 20px;
         border-block-color: white;
@@ -29,7 +29,7 @@ export default {
 
     #button:hover{
         background: white;
-        color: rgb(40, 41, 41);
+        color: #17141d;
         border-block-color: rgb(40, 41, 41);
     }
 </style>

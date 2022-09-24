@@ -23,16 +23,16 @@ const issueSchema = new Schema({
   },
   projectObjectId: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true,
+    // required: true,
   },
   assignee: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true,
+    // required: true,
     trim: true
   },
   reporter: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true,
+    // required: true,
     trim: true
   },
   comments: {

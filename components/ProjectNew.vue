@@ -6,10 +6,16 @@
                 <p id="title">{{proj.title}}</p>
                 <p id="description"> {{proj.description}} </p>
             </div>
-            <div id="card">
+            <div v-b-modal.modal-prevent-closing-createProject id="card">
                 <p id="title">Initiate a new project!</p>
                 <p id="description"> Click me to create a new project! </p>
             </div>
+            <b-modal id="modal-prevent-closing-createProject" size="xl">
+                <CreateProject />
+                <template #modal-footer>
+                    <span id="footerNotes"> Click outside the borders to close </span>
+                </template>
+            </b-modal>  
         </div>
     </div>
 
