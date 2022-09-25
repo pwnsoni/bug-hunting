@@ -46,6 +46,7 @@
                 <div id="centerThisDiv">
                     <button type="submit" id="submitButton" >Submit</button>
                 </div>
+                <!-- <ButtonSpinner /> -->
             </b-form>
         </div>
 
@@ -67,11 +68,11 @@ export default {
         }
     },
     methods: {
-        onSubmit(event) {
+        async onSubmit(event) {
             event.preventDefault()
-            alert(JSON.stringify(this.formDataResult))
-            this.$store.dispatch('INITIATE_SESSION', this.formDataResult)
+            await this.$store.dispatch('INITIATE_SESSION', this.formDataResult)
             this.$router.push('/projects')
+            this.$store.dispatch('TOAST', {body: `You are logged in successfuly!`, purpose: '-- Yayy --'})
         },
     }
 }

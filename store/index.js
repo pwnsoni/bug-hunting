@@ -1,3 +1,4 @@
+
 export const state = () => ({
     isActiveSession: false,
     activeUser: "",
@@ -16,11 +17,19 @@ export const mutations = {
     initiateSession(state, data){
         state.isActiveSession = true;
         state.activeUser = data.userName;
+        return "success"
     },
 
     resetSession(state){
         state.isActiveSession = false;
         state.activeUser = "";
+    },
+    toast(state, data){
+        this._vm.$bvToast.toast(`${data.body}`, {
+            title: data.purpose,
+            autoHideDelay: data.delay || 3000,
+            appendToast: data.append || false
+        })
     }
 
 }
@@ -29,10 +38,16 @@ export const actions = {
     INITIATE_SESSION({commit}, authInfo) {
         // make request
         let x = commit('initiateSession', authInfo);
+        return x
     },
 
     RESET_SESSION({commit}) {
         commit('resetSession')
-    }
+    },
+
+    TOAST({commit}, data) {
+        console.log(data)
+        commit('toast', data);
+    },
 }
 
