@@ -17,12 +17,19 @@ export const mutations = {
     initiateSession(state, data){
         state.isActiveSession = true;
         state.activeUser = data.userName;
-        return "success"
+        alert(JSON.stringify(data))
     },
 
     resetSession(state){
         state.isActiveSession = false;
         state.activeUser = "";
+    },
+    validateAxiosResult(state, code){
+        console.log(code)
+        if (code.status !== 200){
+            alert(`Error, Request failed with status code: ${code.status}`,);
+            throw {message: `Error, Request failed with status code: ${code.status}`, status: code.status}
+        }
     },
     toast(state, data){
         this._vm.$bvToast.toast(`${data.body}`, {
@@ -35,10 +42,13 @@ export const mutations = {
 }
 
 export const actions = {
-    INITIATE_SESSION({commit}, authInfo) {
+    async INITIATE_SESSION({commit}, authInfo) {
         // make request
-        let x = commit('initiateSession', authInfo);
-        return x
+        // let authResult = await this.$axios.$get('/api/login');
+        let authResult = await this.$axios.$post('/api/login', {authInfo});
+        console.log(authResult)
+        commit('validateAxiosResult', {status: authResult.status});
+        commit('initiateSession', authResult.result);
     },
 
     RESET_SESSION({commit}) {

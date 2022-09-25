@@ -70,9 +70,14 @@ export default {
     methods: {
         async onSubmit(event) {
             event.preventDefault()
-            await this.$store.dispatch('INITIATE_SESSION', this.formDataResult)
-            this.$router.push('/projects')
-            this.$store.dispatch('TOAST', {body: `You are logged in successfuly!`, purpose: '-- Yayy --'})
+            try{
+                await this.$store.dispatch('INITIATE_SESSION', this.formDataResult)
+                this.$router.push('/projects')
+                this.$store.dispatch('TOAST', {body: `You are logged in successfuly!`, purpose: '-- Yayy --'})
+            }catch(e){
+                this.$store.dispatch('TOAST', {body: e.message, purpose: '!! Error !!'})
+                this.$router.push('/login')
+            }
         },
     }
 }

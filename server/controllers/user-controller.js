@@ -1,7 +1,12 @@
+const { response } = require("express");
 
 
 const login = async (req, res) => {
-    res.send("in login conroller")
+    console.log("in login conroller")
+    let result = {status: 200}
+    console.log(req.body)
+    result.result = req.body;
+    res.status(result.status).send(result);
 }
 
 const logOut = async (req, res) => {
