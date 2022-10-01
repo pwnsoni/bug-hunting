@@ -1,6 +1,6 @@
 const {app, express} = require('./index');
 
-const { loadNuxt} = require('nuxt');
+const {loadNuxt} = require('nuxt');
 const port = process.env.SERVER_PORT;
 
 app.use('/_nuxt', express.static('./../.nuxt/dist/client'))

@@ -37,6 +37,11 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios'
   ],
+
+  axios: {
+    prefix: '/',
+    baseURL: "/", // Used as fallback if no runtime config is provided
+  },
   
   bootstrapVue: {
     icons: true
