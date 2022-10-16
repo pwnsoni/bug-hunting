@@ -44,9 +44,9 @@
                     </div>
                 </b-form-group>
                 <div id="centerThisDiv">
-                    <button type="submit" id="submitButton" >Submit</button>
+                    <button type="submit" id="submitButton" v-if="show">Submit</button>
                 </div>
-                <!-- <ButtonSpinner /> -->
+                <ButtonSpinner v-if="spin"/>
             </b-form>
         </div>
 
@@ -64,12 +64,15 @@ export default {
     data() {
         return {
             show: true,
-            formDataResult:{}
+            formDataResult:{},
+            spin: false
         }
     },
     methods: {
         async onSubmit(event) {
             event.preventDefault()
+            this.spin = true;
+            this.show = false;
             try{
                 await this.$store.dispatch('INITIATE_SESSION', this.formDataResult)
                 this.$router.push('/projects')
@@ -77,6 +80,8 @@ export default {
             }catch(e){
                 this.$store.dispatch('TOAST', {body: e.message, purpose: '!! Error !!'})
                 this.$router.push('/login')
+                this.spin = false;
+                this.show = true;
             }
         },
     }

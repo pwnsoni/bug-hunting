@@ -2,8 +2,8 @@
 export const state = () => ({
     isActiveSession: false,
     activeUser: "",
-    projects: [{title: "IGI 2", description: "This is my first game, Target is to make bug free"}, 
-                {title: "NFS Dev Ops", description: "It shall live forever, But you should follow traffic rules"}],
+    projects: [{projectId: "IGI 2", description: "This is my first game, Target is to make bug free"}, 
+                {projectId: "NFS Dev Ops", description: "It shall live forever, But you should follow traffic rules"}],
     issues: [{id: "igi100", summary: "first issue of IGI"}, {id: "igi102", summary: "Second issue of IGI"},
                 {id: "igi103", summary: "third issue of IGI"}, {id: "igi104", summary: "fourth issue of IGI"}],
     loginForm: [{fieldName: "username", inputType: "text", key: "userName"}, {fieldName: "password", inputType: "text", key: "password"}],
@@ -17,12 +17,15 @@ export const mutations = {
     initiateSession(state, data){
         state.isActiveSession = true;
         state.activeUser = data.userName;
-        alert(JSON.stringify(data))
     },
 
     resetSession(state){
         state.isActiveSession = false;
         state.activeUser = "";
+    },
+
+    getProjects(state, data){
+        state.projects = data;
     },
     validateAxiosResult(state, code){
         console.log(code)
@@ -48,7 +51,11 @@ export const actions = {
         let authResult = await this.$axios.$post('/api/login', {authInfo});
         console.log(authResult)
         commit('validateAxiosResult', {status: authResult.status});
+        let projects = await this.$axios.$get('/api/projects');
+        commit('validateAxiosResult', {status: projects.status});
+        console.log(projects)
         commit('initiateSession', authResult.result);
+        commit('getProjects', projects.result)
     },
 
     RESET_SESSION({commit}) {

@@ -3,7 +3,7 @@
     <div id="mainDiv">
         <div id="cardContainer">
             <div id="card" v-for="proj in projects" :key="proj" @click="onClickProject(proj.title)">
-                <p id="title">{{proj.title}}</p>
+                <p id="title">{{proj.projectId}}</p>
                 <p id="description"> {{proj.description}} </p>
             </div>
             <div v-b-modal.modal-prevent-closing-createProject id="card">
